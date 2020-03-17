@@ -6,4 +6,4 @@ RUN wget https://github.com/EOSIO/eosio.cdt/releases/download/v1.6.2/eosio.cdt_1
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y ./eosio.cdt_1.6.2-1-ubuntu-18.04_amd64.deb
 
-RUN rm ./eosio.cdt_1.6.2-1-ubuntu-18.04_amd64.deb
+RUN rm ./eosio.cdt_1.6.2-1-ubuntu-18.04_amd64.deb 
