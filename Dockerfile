@@ -1,9 +1,13 @@
 FROM ubuntu:18.04
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install openssl ca-certificates curl wget make cmake&& rm -rf /var/lib/apt/lists/*
- 
-RUN wget https://github.com/EOSIO/eosio.cdt/releases/download/v1.8.0-rc1/eosio.cdt_1.8.0-rc1-1-ubuntu-18.04_amd64.deb
+# Arguments that may be overridden by the user
+ARG release=v1.8.0-rc1
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y ./eosio.cdt_1.8.0-rc1-1-ubuntu-18.04_amd64.deb
+# Install required packages
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install openssl ca-certificates curl wget && rm -rf /var/lib/apt/lists/*
 
-RUN rm ./eosio.cdt_1.8.0-rc1-1-ubuntu-18.04_amd64.deb 
+# Install CDT from deb package
+ADD install_deb.sh /
+RUN /install_deb.sh $release && rm -f install_deb.sh
+
+USER root
