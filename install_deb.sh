@@ -1,14 +1,16 @@
 #!/bin/bash
 
+linux=$linux
+
 if [ "$1" = "" ]; then
 	echo "In order to continue, you must specify either latest or the release version."
 	exit 1
 elif [ "$1" = "latest" ]; then
-	deb=$(/usr/bin/curl -s https://api.github.com/repos/EOSIO/eosio.cdt/releases/latest | grep "browser_download_url.*deb" | cut -d '"' -f 4)
-	filename=$(/usr/bin/curl -s https://api.github.com/repos/EOSIO/eosio.cdt/releases/latest | grep "name.*deb" | cut -d '"' -f 4)
+	deb=$(/usr/bin/curl -s https://api.github.com/repos/EOSIO/eosio.cdt/releases/latest | grep "$linux" | grep "browser_download_url.*deb" | cut -d '"' -f 4)
+	filename=$(/usr/bin/curl -s https://api.github.com/repos/EOSIO/eosio.cdt/releases/latest | grep "$linux" | grep "name.*deb" | cut -d '"' -f 4)
 else
-	deb=$(/usr/bin/curl -s https://api.github.com/repos/EOSIO/eosio.cdt/releases/tags/$1 | grep "browser_download_url.*deb" | cut -d '"' -f 4)
-	filename=$(/usr/bin/curl -s https://api.github.com/repos/EOSIO/eosio.cdt/releases/tags/$1 | grep "name.*deb" | cut -d '"' -f 4)
+	deb=$(/usr/bin/curl -s https://api.github.com/repos/EOSIO/eosio.cdt/releases/tags/$1 | grep "$linux" | grep "browser_download_url.*deb" | cut -d '"' -f 4)
+	filename=$(/usr/bin/curl -s https://api.github.com/repos/EOSIO/eosio.cdt/releases/tags/$1 | grep "$linux" | grep "name.*deb" | cut -d '"' -f 4)
 fi
 
 if [ "$deb" = "" ]; then
