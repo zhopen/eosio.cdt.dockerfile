@@ -8,6 +8,6 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install openssl 
 
 # Install CDT from deb package
 ADD install_deb.sh /
-RUN /install_deb.sh $release $linux && rm -f install_deb.sh
+RUN ./install_deb.sh $release $linux && rm -f install_deb.sh
 
 USER root

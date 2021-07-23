@@ -1,6 +1,6 @@
 #!/bin/bash
 
-linux=$linux
+linux=$2
 
 if [ "$1" = "" ]; then
 	echo "In order to continue, you must specify either latest or the release version."
