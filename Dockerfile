@@ -1,8 +1,7 @@
 FROM ubuntu:18.04
 
 # Arguments that may be overridden by the user
-ARG release=v1.8.0-rc1
-
+ARG release=v1.8.0
 # Install required packages
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install openssl ca-certificates curl wget && rm -rf /var/lib/apt/lists/*
 
